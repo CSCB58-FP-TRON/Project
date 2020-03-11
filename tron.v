@@ -73,6 +73,12 @@ module main
 		defparam VGA.MONOCHROME = "FALSE";
 		defparam VGA.BITS_PER_COLOUR_CHANNEL = 1;
 		defparam VGA.BACKGROUND_IMAGE = "black.mif";
+
+
+	//insantiate control
+
+	//instantiate datapath
+
 endmodule
 
 
