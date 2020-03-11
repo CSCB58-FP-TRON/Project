@@ -9,6 +9,10 @@ module playerRegister(
     input [1:0] directionIN,directionCURRENT,
     output reg [1:0] directionOUT
     );
+
+    initial
+        directionCURRENT = 2'b00; //Since both player 1 and 2 cannot go up since player 1 is going down and player 2 is already going up
+    
     always(posedge CLOCK_50) begin
         case(directionIN)
             2'b00: begin
@@ -40,5 +44,5 @@ module playerRegister(
             end
         endcase
     end
-    
+
 endmodule
