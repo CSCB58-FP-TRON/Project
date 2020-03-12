@@ -41,14 +41,19 @@ module main
 	output	[9:0]	VGA_G;	 				//	VGA Green[9:0]
 	output	[9:0]	VGA_B;   				//	VGA Blue[9:0]
 	
-	wire resetn;
-	assign resetn = KEY[0];
+
 	
 	// Create the colour, x, y and writeEn wires that are inputs to the controller.
 	wire [2:0] colour;//(r,g,b)
 	wire [7:0] x;
 	wire [6:0] y;
-	wire writeEn;
+	wire writeEn, load_x, load_y, load_colour;
+	wire resetn;
+	assign resetn = KEY[0];
+	wire go;
+	assign go = KEY[1];
+	wire load;
+	assign load = KEY[3];
 
 	// Create an Instance of a VGA controller - there can be only one!
 	// Define the number of colours as well as the initial background
@@ -74,33 +79,33 @@ module main
 		defparam VGA.BITS_PER_COLOUR_CHANNEL = 1;
 		defparam VGA.BACKGROUND_IMAGE = "black.mif";
 
-
+	//instantiate datapath
+	datapath movementFlow(
+			.clk(CLOCK_50),
+			.resestn(resetn),
+			.ld_x(load_x),
+			.ld_y(load_y),
+			.ld_color(load_colour),
+			.color_in(SW[9:7]),
+			.coordinate(SW[6:0]),
+			.x_out(x),
+			.y_out(y),
+			.colout_out(colour)
+	);
 
 	//insantiate control
 	control movementControl(
 			.clk(CLOCK_50),
 			.resetn(resetn),
-			.load(),
-			.go(),
-			.ld_x(),
-			.ld_y(),
-			.ld_color(),
-			.writeEn()
+			.load(!load),
+			.go(!go),
+			.ld_x(load_x),
+			.ld_y(load_y),
+			.ld_color(load_colour),
+			.writeEn(writeEn)
 	);
 
-	//instantiate datapath
-	datapath movementFlow(
-			.clk(CLOCK_50),
-			.resestn(resetn),
-			.ld_x(),
-			.ld_y(),
-			.ld_color(),
-			.color_in(),
-			.coordinate(),
-			.x_out(),
-			.y_out(),
-			.colout_out()
-	);
+
 
 
 	playerRegister player1(.clk(), .directionIn(), .directionCURRENT(), .directionOUT());
