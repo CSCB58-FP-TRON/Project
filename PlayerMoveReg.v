@@ -13,35 +13,36 @@ module playerRegister(
     initial
         directionCURRENT = 2'b00; //Since both player 1 and 2 cannot go up since player 1 is going down and player 2 is already going up
     
-    always(posedge CLOCK_50) begin
+    always(*) begin
         case(directionIN)
             2'b00: begin
                 if(directionCURRENT == 2'b11)
-                    directionOUT <= directionCURRENT
+                    directionOUT = directionCURRENT;
                 else
-                    directionOUT <= directionIN
+                    directionOUT = directionIN;
             end
 
             2'b01: begin
                 if(directionCURRENT == 2'b10)
-                    directionOUT <= directionCURRENT
+                    directionOUT = directionCURRENT;
                 else
-                    directionOUT <= directionIN
+                    directionOUT = directionIN;
             end
 
             2'b10: begin
                 if(directionCURRENT == 2'b01)
-                    directionOUT <= directionCURRENT
+                    directionOUT = directionCURRENT;
                 else
-                    directionOUT <= directionIN
+                    directionOUT = directionIN;
             end
 
             2'b11: begin
                 if(directionCURRENT == 2'b00)
-                    directionOUT <= directionCURRENT
+                    directionOUT = directionCURRENT;
                 else
-                    directionOUT <= directionIN
+                    directionOUT = directionIN;
             end
+            default: directionOUT = directionCURRENT;
         endcase
     end
 

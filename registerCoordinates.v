@@ -3,6 +3,7 @@ module registerCoordinates(
     input [1:0] direction,
     input [7:0] xINITIAL,
     input [6:0] yINITIAL,
+    input [1:0] directionInitial,
     output reg [7:0] x,
     output reg [6:0] y
     );
@@ -11,10 +12,10 @@ module registerCoordinates(
         y = yINITIAL;
     end
 
-    always@(posedge CLOCK_50) begin
+    always@(*) begin
         if(reset == 1'b1) begin
             x = xINITIAL;
-            Y = yINITIAL;
+            y = yINITIAL;
         end
         else begin
             case(direction)
