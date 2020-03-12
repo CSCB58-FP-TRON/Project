@@ -5,7 +5,7 @@ module playerRegister(
      * Let 11 Represent DOWN
      * Let 10 Represent LEFT
      */ 
-    input CLOCK_50,
+    input clk,
     input [1:0] directionIN,directionCURRENT,
     output reg [1:0] directionOUT
     );

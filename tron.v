@@ -75,9 +75,65 @@ module main
 		defparam VGA.BACKGROUND_IMAGE = "black.mif";
 
 
+
 	//insantiate control
+	control movementControl(
+			.clk(CLOCK_50),
+			.resetn(resetn),
+			.load(),
+			.go(),
+			.ld_x(),
+			.ld_y(),
+			.ld_color(),
+			.writeEn()
+	);
 
 	//instantiate datapath
+	datapath movementFlow(
+			.clk(CLOCK_50),
+			.resestn(resetn),
+			.ld_x(),
+			.ld_y(),
+			.ld_color(),
+			.color_in(),
+			.coordinate(),
+			.x_out(),
+			.y_out(),
+			.colout_out()
+	);
+
+
+	playerRegister player1(.clk(), .directionIn(), .directionCURRENT(), .directionOUT());
+	playerRegister player2(.clk(), .directionIn(), .directionCURRENT(), .directionOUT());
+
+
+	wire [7:0] scanCodeOut;
+	wire scanCodeReady;
+	wire case_out;
+	keyboard inputKeyboard(
+			.clk(CLOCK_50), 
+			.reset(resestn),
+        	.ps2d(),
+			.ps2c(),  
+        	.scan_code(scanCodeOut),
+        	.scan_code_ready(scanCodeReady),
+        	.letter_case_out(case_out)
+    );
+
+
+	wire [7:0] asciiOut;
+	
+	key2ascii key2asc(
+			.letter_case(case_out),
+			.scan_code(scanCodeReady),
+			.ascii_code(asciiOut)
+	);
+
+	wire [1:0] p1Input, p2Input;
+
+	always @(*)
+		case ()
+
 
 endmodule
 
