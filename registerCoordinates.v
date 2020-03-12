@@ -8,7 +8,7 @@ module registerCoordinates(
     );
     initial begin
         x = xINITIAL;
-        Y = yINITIAL;
+        y = yINITIAL;
     end
 
     always@(posedge CLOCK_50) begin
