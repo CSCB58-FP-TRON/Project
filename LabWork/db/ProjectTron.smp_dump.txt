@@ -1,0 +1,5 @@
+
+State Machine - |ProjectTron|control:movementControl|current_state
+Name current_state.PLAY 
+current_state.PLOT 0 
+current_state.PLAY 1 

@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Thu Mar 12 16:42:57 2020
+Quartus Prime Version : 16.1.0 Build 196 10/24/2016 SJ Lite Edition
+Revision Name : ProjectTron
+Top-level Entity Name : ProjectTron
+Family : Cyclone IV E
+Total logic elements : 165
+    Total combinational functions : 160
+    Dedicated logic registers : 46
+Total registers : 46
+Total pins : 86
+Total virtual pins : 0
+Total memory bits : 57,600
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 1
